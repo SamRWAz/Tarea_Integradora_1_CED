@@ -11,7 +11,17 @@ public class TaskManager {
 
     public TaskManager() {
         tasks = new Hashtable<>();
+        testCases();
+
     }
+
+    public void testCases(){
+
+        Task newTarea = new Task("Sumas y Restas","Todo lo que necesitas saber sobre las sumas y restas","10/12/2023", Priority.PRIORITY);
+        tasks.put(1, newTarea);
+
+    }
+
 
     public void addTaskReminder(int id, String title, String description, int day, int month, int year, int priority) {
 
@@ -72,11 +82,19 @@ public class TaskManager {
 
         for (Task task : tasks.values()) {
 
-            msg += "Título: " + task.getTitle() + "\n" + 
-                   "Descripción: " + task.getDescription() + "\n" +
-                   "Fecha Límite: " + task.getDatelimit() + "\n" +
-                   "Prioridad: " + task.getPriority()+ "\n" +
-                   "-------------------------";
+
+            msg +="\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n" +
+                   "║                                                                                                                            \n" + 
+                   "║ -> Título: " + task.getDescription()+"                                                                                   "+"\n" + 
+                   "║                                                                                                                            \n" +         
+                   "║ -> Descripción: "  + task.getDescription()+"                                                                             "+"\n" + 
+                   "║                                                                                                                            \n" +     
+                   "║ -> Fecha Límite: " + task.getDatelimit() +"                                                                              "+"\n" +  
+                   "║                                                                                                                            \n" + 
+                   "║ -> Prioridad: " + task.getPriority()+"                                                                                   "+"\n" +                     
+                   "║                                                                                                                            \n" + 
+                   "╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n";
+
         }
 
         return msg;

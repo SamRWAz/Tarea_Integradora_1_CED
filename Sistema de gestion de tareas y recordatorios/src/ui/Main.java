@@ -32,27 +32,41 @@ public class Main {
 
         switch (userOption) {
                 case 1:
-                    System.out.println("Ha seleccionado la Opción 1.");
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Ha seleccionado la Opción 1. ║\n"+
+                                         "╚══════════════════════════════╝\n");
+
                     addTaskReminder();
                     break;
                 case 2:
-                    System.out.println("Ha seleccionado la Opción 2.");
-                    modifyTaskReminder();
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Ha seleccionado la Opción 2. ║\n"+
+                                         "╚══════════════════════════════╝\n");
+                    modifyTaskReminder();                     
                     break;
+
                 case 3:
-                    System.out.println("Ha seleccionado la Opción 3.");
-                    deleteTaskReminder();
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Ha seleccionado la Opción 3. ║\n"+
+                                         "╚══════════════════════════════╝\n");
+                    deleteTaskReminder();                     
                     break;
+
                 case 4:
-                    System.out.println("Ha seleccionado la Opción 4.");
-                    showListTaskReminder();
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Ha seleccionado la Opción 4. ║\n"+
+                                         "╚══════════════════════════════╝\n");
+                    showListTaskReminder();                     
                     break;
                 case 5:
-                    System.out.println("Ha seleccionado la Opción 5.");
-                    
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Ha seleccionado la Opción 5. ║\n"+
+                                         "╚══════════════════════════════╝\n");
                     break;
                 case 0:
-                    System.out.println("Saliendo del programa.");
+                    System.out.println("\n╔══════════════════════════════╗\n"+
+                                         "║ Saliendo del programa...     ║\n"+
+                                         "╚══════════════════════════════╝\n");
                     break;
                 default:
                     System.out.println("Opción no válida. Por favor, elija una opción válida.");
@@ -65,13 +79,18 @@ public class Main {
         int input;
 
         System.out.println("\n╔══════════════════════════════╗\n" +
-                             "║          Menú de la App      ║\n" +
+                             "║      | Menú de la App |      ║\n" +
                              "║                              ║\n" + 
                              "║  1. Agregar una tarea        ║\n" +
-                             "║  2. Modificar una tarea      ║\n" + 
-                             "║  3. Eliminar una tarea       ║\n" + 
-                             "║  4. Mostrar lista            ║\n" + 
+                             "║                              ║\n" +
+                             "║  2. Modificar una tarea      ║\n" +
+                             "║                              ║\n" + 
+                             "║  3. Eliminar una tarea       ║\n" +
+                             "║                              ║\n" + 
+                             "║  4. Mostrar lista            ║\n" +
+                             "║                              ║\n" + 
                              "║  5. Deshacer última acción   ║\n" + 
+                             "║                              ║\n" +
                              "║  0. Salir                    ║\n" + 
                              "║                              ║\n" + 
                              "╚══════════════════════════════╝\n");
