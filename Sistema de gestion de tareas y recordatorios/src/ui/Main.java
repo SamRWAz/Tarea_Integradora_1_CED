@@ -2,13 +2,17 @@ package ui;
 
 import java.util.Scanner;
 
+import model.TaskManager;
+
 public class Main {
 
     private Scanner sc;
+    private TaskManager taskM;
 
     public Main(){
 
         sc = new Scanner(System.in);
+        taskM = new TaskManager();
     }
     public static void main(String[] args) {
 
@@ -83,6 +87,31 @@ public class Main {
 
     private void addTaskReminder(){
 
+        System.out.println("Ingresa un id de reconocimiento para la tarea (Solo hacer uso de números)");
+        int id = sc.nextInt();
+
+        sc.nextLine();
+
+        System.out.println("Ingrese el título de la tarea:");
+        String title = sc.nextLine();
+
+        System.out.println("Ingrese la descripción de la tarea:");
+        String description = sc.nextLine();
+
+        int day, month, year;
+        System.out.println("Ingrese el día:");
+        day = sc.nextInt();
+
+        System.out.println("Ingrese el mes:");
+        month = sc.nextInt();
+
+        System.out.println("Ingrese el año:");
+        year = sc.nextInt();
+
+        System.out.println("Ingrese la prioridad de la tarea (1 para prioritaria, 0 para no prioritaria):");
+        int priority = sc.nextInt();
+
+        taskM.addTaskReminder(id, title, description, day, month, year, priority);
         
 
     }
@@ -101,7 +130,17 @@ public class Main {
 
     private void showListTaskReminder(){
 
+        String listado = taskM.showListTaskReminder();
 
+        if(listado.equals("")){
+
+            System.out.println("No hay tareas");
+
+        }else{
+
+            System.out.println(listado);
+
+        }
 
     }
 

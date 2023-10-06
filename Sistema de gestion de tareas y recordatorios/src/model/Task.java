@@ -1,29 +1,18 @@
 package model;
 
 public class Task {
-    private int id;
     private String title;
     private String description;
     private String datelimit;
-    private String priority;
+    private Priority priority;
 
 
-    public Task(int id, String title, String description, String datelimit, String priority) {
-        this.id = id;
+    public Task(String title, String description, String datelimit, Priority priority) {
+
         this.title = title;
         this.description = description;
         this.datelimit = datelimit;
         this.priority = priority;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 
@@ -57,19 +46,19 @@ public class Task {
     }
 
 
-    public String getPriority() {
+    public Priority getPriority() {
         return priority;
     }
 
 
-    public void setPriority(String priority) {
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
 
 
     @Override
     public String toString() {
-        return "Task [id=" + id + ", title=" + title + ", description=" + description + ", datelimit=" + datelimit
+        return "Task [title=" + title + ", description=" + description + ", datelimit=" + datelimit
                 + ", priority=" + priority + "]";
     }
 
