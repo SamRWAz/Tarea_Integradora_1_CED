@@ -79,6 +79,13 @@ public class Main {
         int input;
 
         System.out.println("\n╔══════════════════════════════╗\n" +
+                             "║            ( ( (             ║\n" +         
+                             "║             ) ) )            ║\n" +       
+                             "║            ( ( (             ║\n" +
+                             "║          '. ___ .'           ║\n" +
+                             "║         '  (> <) '           ║\n" +
+                             "║ --------ooO-(_)-Ooo--------- ║\n" +
+                             "║                              ║\n" +
                              "║      | Menú de la App |      ║\n" +
                              "║                              ║\n" + 
                              "║  1. Agregar una tarea        ║\n" +
@@ -95,7 +102,7 @@ public class Main {
                              "║                              ║\n" + 
                              "╚══════════════════════════════╝\n");
 
-        System.out.print("Seleccione una opción: ");
+        System.out.print("-> Seleccione una opción: ");
 
 
         input = sc.nextInt();
@@ -137,12 +144,93 @@ public class Main {
 
     private void modifyTaskReminder(){
 
+        String listado = taskM.showListTaskReminder();
 
+        if(listado.equals("")){
+
+            System.out.println("No hay tareas");
+
+        }else{
+
+            System.out.println(listado);
+
+            System.out.println("Digite el id de la tarea que desea modificar");
+
+            int selection = sc.nextInt();
+
+            System.out.println("Que dato desea modificar de la tarea?\n" +
+                               "1. Titulo\n" +
+                               "2. Descripcion\n" +
+                               "3. Fecha Limite\n" +
+                               "4. Prioridad (1 para prioritaria, 0 para no prioritaria)" );
+
+            int cambio = sc.nextInt();
+            
+            int day = 0;
+            int month = 0;
+            int year = 0;
+            String modification = "";
+
+            sc.nextLine();
+
+            if(cambio == 3){
+
+                System.out.println("Digite la fecha por dia, mes y año");
+
+                System.out.println("Ingrese el día:");
+                day = sc.nextInt();
+
+                System.out.println("Ingrese el mes:");
+                month = sc.nextInt();
+
+                System.out.println("Ingrese el año:");
+                year = sc.nextInt();
+                
+
+
+            }else{
+
+                System.out.println("Digite el nuevo valor");
+			    modification = sc.nextLine();
+
+            }
+
+            if(taskM.modifyTaskReminder(selection, cambio, day, month, year, modification)){
+
+                System.out.println("Modificacion exitosa");
+
+            }else{
+
+                System.out.println("No se pudo modificar la tarea");
+
+            }  
+            
+
+			
+            
+        }   
 
     }
 
     private void deleteTaskReminder(){
 
+        String listado = taskM.showListTaskReminder();
+
+        if(listado.equals("")){
+
+            System.out.println("No hay tareas");
+
+        }else{
+
+            System.out.println(listado);
+
+            System.out.println("Ingrese el ID de la tarea que desea eliminar");
+
+            int selection = sc.nextInt();
+
+            taskM.deleteTaskReminder(selection);
+
+        }
 
 
     }

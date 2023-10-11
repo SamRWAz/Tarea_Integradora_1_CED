@@ -33,20 +33,20 @@ public class TaskManager {
 		String fechaChange = formatoFecha.format(fechaProvisional.getTime());
 
 
-		Priority Priority1 = Priority.NO_PRIORITY;
+		Priority priority1 = Priority.NO_PRIORITY;
 
         if (priority == 1){
 
-            Priority1 = Priority.PRIORITY;
+            priority1 = Priority.PRIORITY;
 
         }else{
 
-			Priority1 = Priority.NO_PRIORITY;
+			priority1 = Priority.NO_PRIORITY;
 
 		}
 
 
-        Task NewTarea = new Task(title, description, fechaChange, Priority1);
+        Task NewTarea = new Task(title, description, fechaChange, priority1);
 
         addTaskReminder(id, NewTarea);
 
@@ -58,10 +58,50 @@ public class TaskManager {
     }
 
 
-    public void modifyTaskReminder(int id, Task task) {
+    public boolean modifyTaskReminder(int id, int cambio, int day, int month, int year, String modification) {
+        
         if (tasks.containsKey(id)) {
-            tasks.put(id, task);
+            Task task = tasks.get(id);
+            switch(cambio){
+
+                case 1:
+                    task.setTitle(modification);
+                    return true;
+                    
+                case 2:
+                    task.setDescription(modification);
+                    return true;
+                case 3:
+                    Calendar fechaProvisional = new GregorianCalendar(day, month-1, year);
+
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    
+                    String fechaChange = formatoFecha.format(fechaProvisional.getTime());
+
+                    task.setDatelimit(fechaChange);
+                    return true;
+                case 4:
+                    Priority priority1 = Priority.NO_PRIORITY;
+                    double priority = Integer.parseInt(modification);
+                    if (priority == 1){
+
+                        priority1 = Priority.PRIORITY;
+
+                    }else{
+
+                        priority1 = Priority.NO_PRIORITY;
+
+                    }
+                    task.setPriority(priority1);
+                    return true;
+            }
+        } else {
+
+           return false;
+
         }
+
+        return false;
     }
 
 
@@ -80,20 +120,20 @@ public class TaskManager {
         
         String msg = "";
 
-        for (Task task : tasks.values()) {
+        for (Integer id : tasks.keySet()) {
 
+            Task task = tasks.get(id);
 
-            msg +="\n╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n" +
-                   "║                                                                                                                            \n" + 
-                   "║ -> Título: " + task.getDescription()+"                                                                                   "+"\n" + 
-                   "║                                                                                                                            \n" +         
-                   "║ -> Descripción: "  + task.getDescription()+"                                                                             "+"\n" + 
-                   "║                                                                                                                            \n" +     
-                   "║ -> Fecha Límite: " + task.getDatelimit() +"                                                                              "+"\n" +  
-                   "║                                                                                                                            \n" + 
-                   "║ -> Prioridad: " + task.getPriority()+"                                                                                   "+"\n" +                     
-                   "║                                                                                                                            \n" + 
-                   "╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\n";
+            msg += "-> ID: " + id + "\n";
+            msg += "╔════════════════════════════════════════════════════════════════════════════════════════════════════════\n" +
+                   "║ -> Título: " + task.getDescription() + "\n" +
+                   "║\n" +
+                   "║ -> Descripción: " + task.getDescription() + "\n" +
+                   "║\n" +
+                   "║ -> Fecha Límite: " + task.getDatelimit() + "\n" +
+                   "║\n" +
+                   "║ -> Prioridad: " + task.getPriority() + "\n" +
+                   "╚════════════════════════════════════════════════════════════════════════════════════════════════════════\n";
 
         }
 
