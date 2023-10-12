@@ -35,7 +35,6 @@ public class Main {
                     System.out.println("\n╔══════════════════════════════╗\n"+
                                          "║ Ha seleccionado la Opción 1. ║\n"+
                                          "╚══════════════════════════════╝\n");
-
                     addTaskReminder();
                     break;
                 case 2:
@@ -44,14 +43,12 @@ public class Main {
                                          "╚══════════════════════════════╝\n");
                     modifyTaskReminder();                     
                     break;
-
                 case 3:
                     System.out.println("\n╔══════════════════════════════╗\n"+
                                          "║ Ha seleccionado la Opción 3. ║\n"+
                                          "╚══════════════════════════════╝\n");
                     deleteTaskReminder();                     
                     break;
-
                 case 4:
                     System.out.println("\n╔══════════════════════════════╗\n"+
                                          "║ Ha seleccionado la Opción 4. ║\n"+
@@ -62,6 +59,7 @@ public class Main {
                     System.out.println("\n╔══════════════════════════════╗\n"+
                                          "║ Ha seleccionado la Opción 5. ║\n"+
                                          "╚══════════════════════════════╝\n");
+                    undoLastAction();                 
                     break;
                 case 0:
                     System.out.println("\n╔══════════════════════════════╗\n"+
@@ -137,7 +135,7 @@ public class Main {
         System.out.println("Ingrese la prioridad de la tarea (1 para prioritaria, 0 para no prioritaria):");
         int priority = sc.nextInt();
 
-        taskM.addTaskReminder(id, title, description, day, month, year, priority);
+        taskM.addTaskReminder(id, title, description, day, month-1, year, priority);
         
 
     }
@@ -248,6 +246,32 @@ public class Main {
             System.out.println(listado);
 
         }
+
+    }
+
+    private void undoLastAction(){
+
+        if(taskM.stackEmpty()){
+
+            System.out.println("No has realizado acciones");
+
+        }else{
+
+            System.out.println("Se deshará la ultima accion realizada");
+
+            if(taskM.undoLastAction()){
+
+                System.out.println("Deshacer con exito");
+
+            }else{
+
+                System.out.println("No se pudo deshacer la accion");
+
+            }  
+            
+
+        }
+
 
     }
 
