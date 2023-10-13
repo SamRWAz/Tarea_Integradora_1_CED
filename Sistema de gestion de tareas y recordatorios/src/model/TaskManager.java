@@ -17,8 +17,8 @@ public class TaskManager {
 
     public TaskManager() {
         tasks = new Hashtable<>();
-        prioritizedTasks = new PriorityQueue<>();
-        nonPrioritizedTasks = new PriorityQueue<>();
+        prioritizedTasks = new PriorityQueue<>(new PriorityComparator());
+        nonPrioritizedTasks = new PriorityQueue<>(new PriorityComparator());
         actionStack = new Stack<>();
         testCases();
 
@@ -26,13 +26,14 @@ public class TaskManager {
 
     public void testCases(){
 
-        Task newTask = new Task("Sumas y Restas","Todo lo que necesitas saber sobre las sumas y restas","10/12/2023", Priority.PRIORITY);
+        Task newTask = new Task("Additions and Subtractions","Everything you need to know about addition and subtraction","17/10/2023", Priority.PRIORITY);
         tasks.put(1, newTask);
-
+        Task newTask1 = new Task("Shoes","Buy costume shoes","30/10/2023", Priority.PRIORITY);
+        tasks.put(2, newTask1);
     }
 
 
-    public void addTaskReminder(int id, String title, String description, int day, int month, int year, int priority) {
+    public boolean addTaskReminder(int id, String title, String description, int day, int month, int year, int priority) {
 
 
         Calendar fechaProvisional = new GregorianCalendar(day, month-1, year);
@@ -65,12 +66,14 @@ public class TaskManager {
             nonPrioritizedTasks.add(newTask);
         }
 
+        return true;
+
 
     }
 
     public void addTaskReminder(int id, Task task) {
         tasks.put(id , task);
-        actionStack.push(new Action("Agregar tarea", task, id));
+        actionStack.push(new Action("Add task", task, id));
     }
 
 
@@ -83,12 +86,12 @@ public class TaskManager {
 
                 case 1:
                     task.setTitle(modification);
-                    actionStack.push(new Action("Modificar tarea", originalTask, id));
+                    actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
                     
                 case 2:
                     task.setDescription(modification);
-                    actionStack.push(new Action("Modificar tarea", originalTask, id));
+                    actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
                 case 3:
                     Calendar fechaProvisional = new GregorianCalendar(day, month-1, year);
@@ -96,7 +99,7 @@ public class TaskManager {
                     String fechaChange = formatoFecha.format(fechaProvisional.getTime());
 
                     task.setDatelimit(fechaChange);
-                    actionStack.push(new Action("Modificar tarea", originalTask, id));
+                    actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
                 case 4:
                     Priority priority1 = Priority.NO_PRIORITY;
@@ -111,7 +114,7 @@ public class TaskManager {
 
                     }
                     task.setPriority(priority1);
-                    actionStack.push(new Action("Modificar tarea", originalTask, id));
+                    actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
             }
         } else {
@@ -128,6 +131,8 @@ public class TaskManager {
 
         if (tasks.containsKey(id)) {
             Task task = tasks.get(id);
+            Task originalTask = new Task(task.getTitle(), task.getDescription(), task.getDatelimit(), task.getPriority());
+            
             tasks.remove(id);
     
             if (task.getPriority() == Priority.PRIORITY) {
@@ -135,6 +140,8 @@ public class TaskManager {
             } else {
                 nonPrioritizedTasks.remove(task);
             }
+
+            actionStack.push(new Action("Delete task", originalTask, id));
         }
 
     }
@@ -155,13 +162,13 @@ public class TaskManager {
 
             msg += "-> ID: " + id + "\n";
             msg += "╔════════════════════════════════════════════════════════════════════════════════════════════════════════\n" +
-                   "║ -> Título: " + task.getDescription() + "\n" +
+                   "║ -> Title: " + task.getTitle() + "\n" +
                    "║\n" +
-                   "║ -> Descripción: " + task.getDescription() + "\n" +
+                   "║ -> Description: " + task.getDescription() + "\n" +
                    "║\n" +
-                   "║ -> Fecha Límite: " + task.getDatelimit() + "\n" +
+                   "║ -> Deadline: " + task.getDatelimit() + "\n" +
                    "║\n" +
-                   "║ -> Prioridad: " + task.getPriority() + "\n" +
+                   "║ -> Priority: " + task.getPriority() + "\n" +
                    "╚════════════════════════════════════════════════════════════════════════════════════════════════════════\n";
 
         }
@@ -178,14 +185,21 @@ public class TaskManager {
             Task taskDetails = lastAction.getTaskDetails();
             int id = lastAction.getId();
     
-            if (actionType.equals("Agregar tarea")) {
+            if (actionType.equals("Add task")) {
                 tasks.remove(id);
                 return true;
-            } else if (actionType.equals("Modificar tarea")) {
+            } else if (actionType.equals("Modify task")) {
                 tasks.put(id, taskDetails);
                 return true;
-            } else if (actionType.equals("Eliminar tarea")) {
+            } else if (actionType.equals("Delete task")) {
+
                 tasks.put(id, taskDetails);
+
+                if (taskDetails.getPriority() == Priority.PRIORITY) {
+                    prioritizedTasks.add(taskDetails);
+                } else {
+                    nonPrioritizedTasks.add(taskDetails);
+                }
                 return true;
             }
         }

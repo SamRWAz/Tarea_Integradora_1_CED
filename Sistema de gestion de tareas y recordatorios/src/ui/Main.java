@@ -33,37 +33,37 @@ public class Main {
         switch (userOption) {
                 case 1:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Ha seleccionado la Opción 1. ║\n"+
+                                         "║ You have selected Option 1.  ║\n"+
                                          "╚══════════════════════════════╝\n");
                     addTaskReminder();
                     break;
                 case 2:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Ha seleccionado la Opción 2. ║\n"+
+                                         "║ You have selected Option 2.  ║\n"+
                                          "╚══════════════════════════════╝\n");
                     modifyTaskReminder();                     
                     break;
                 case 3:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Ha seleccionado la Opción 3. ║\n"+
+                                         "║ You have selected Option 3.  ║\n"+
                                          "╚══════════════════════════════╝\n");
                     deleteTaskReminder();                     
                     break;
                 case 4:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Ha seleccionado la Opción 4. ║\n"+
+                                         "║ You have selected Option 4.  ║\n"+
                                          "╚══════════════════════════════╝\n");
                     showListTaskReminder();                     
                     break;
                 case 5:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Ha seleccionado la Opción 5. ║\n"+
+                                         "║ You have selected Option 5.  ║\n"+
                                          "╚══════════════════════════════╝\n");
                     undoLastAction();                 
                     break;
                 case 0:
                     System.out.println("\n╔══════════════════════════════╗\n"+
-                                         "║ Saliendo del programa...     ║\n"+
+                                         "║ Exiting the program...       ║\n"+
                                          "╚══════════════════════════════╝\n");
                     break;
                 default:
@@ -84,23 +84,17 @@ public class Main {
                              "║         '  (> <) '           ║\n" +
                              "║ --------ooO-(_)-Ooo--------- ║\n" +
                              "║                              ║\n" +
-                             "║      | Menú de la App |      ║\n" +
+                             "║        | App Menu |          ║\n" +
                              "║                              ║\n" + 
-                             "║  1. Agregar una tarea        ║\n" +
-                             "║                              ║\n" +
-                             "║  2. Modificar una tarea      ║\n" +
-                             "║                              ║\n" + 
-                             "║  3. Eliminar una tarea       ║\n" +
-                             "║                              ║\n" + 
-                             "║  4. Mostrar lista            ║\n" +
-                             "║                              ║\n" + 
-                             "║  5. Deshacer última acción   ║\n" + 
-                             "║                              ║\n" +
-                             "║  0. Salir                    ║\n" + 
-                             "║                              ║\n" + 
+                             "║  1. Add a task               ║\n" +
+                             "║  2. Modify a task            ║\n" +
+                             "║  3. Delete a task            ║\n" +
+                             "║  4. Show task list           ║\n" +
+                             "║  5. Undo last action         ║\n" + 
+                             "║  0. Exit                     ║\n" + 
                              "╚══════════════════════════════╝\n");
 
-        System.out.print("-> Seleccione una opción: ");
+        System.out.print("-> Select an option: ");
 
 
         input = sc.nextInt();
@@ -111,31 +105,39 @@ public class Main {
 
     private void addTaskReminder(){
 
-        System.out.println("Ingresa un id de reconocimiento para la tarea (Solo hacer uso de números)");
+        System.out.println("Enter a recognition id for the task (Only make use of numbers))");
         int id = sc.nextInt();
 
         sc.nextLine();
 
-        System.out.println("Ingrese el título de la tarea:");
+        System.out.println("Enter the task title:");
         String title = sc.nextLine();
 
-        System.out.println("Ingrese la descripción de la tarea:");
+        System.out.println("Enter the task description:");
         String description = sc.nextLine();
 
         int day, month, year;
-        System.out.println("Ingrese el día:");
+        System.out.println("Enter the day:");
         day = sc.nextInt();
 
-        System.out.println("Ingrese el mes:");
+        System.out.println("Enter the month:");
         month = sc.nextInt();
 
-        System.out.println("Ingrese el año:");
+        System.out.println("Enter the year:");
         year = sc.nextInt();
 
-        System.out.println("Ingrese la prioridad de la tarea (1 para prioritaria, 0 para no prioritaria):");
+        System.out.println("Enter the priority of the task (1 for priority, 0 for non-priority):");
         int priority = sc.nextInt();
 
-        taskM.addTaskReminder(id, title, description, day, month-1, year, priority);
+        if(taskM.addTaskReminder(id, title, description, day, month-1, year, priority)){
+            
+            System.out.println("Task successfully entered");
+
+        }else{
+
+            System.out.println("Could not enter the task");
+
+        }  
         
 
     }
@@ -146,21 +148,21 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No hay tareas");
+            System.out.println("No tasks entered");
 
         }else{
 
             System.out.println(listado);
 
-            System.out.println("Digite el id de la tarea que desea modificar");
+            System.out.println("Type the id of the task you want to modify");
 
             int selection = sc.nextInt();
 
-            System.out.println("Que dato desea modificar de la tarea?\n" +
-                               "1. Titulo\n" +
-                               "2. Descripcion\n" +
-                               "3. Fecha Limite\n" +
-                               "4. Prioridad (1 para prioritaria, 0 para no prioritaria)" );
+            System.out.println("What data do you want to change in the task?\n" +
+                               "1. Title\n" +
+                               "2. Description\n" +
+                               "3. Deadline\n" +
+                               "4. Priority (1 for priority, 0 for non-priority)" );
 
             int cambio = sc.nextInt();
             
@@ -173,33 +175,33 @@ public class Main {
 
             if(cambio == 3){
 
-                System.out.println("Digite la fecha por dia, mes y año");
+                System.out.println("Enter date by day, month and year");
 
-                System.out.println("Ingrese el día:");
+                System.out.println("Enter the day:");
                 day = sc.nextInt();
 
-                System.out.println("Ingrese el mes:");
+                System.out.println("Enter the month:");
                 month = sc.nextInt();
 
-                System.out.println("Ingrese el año:");
+                System.out.println("Enter the year:");
                 year = sc.nextInt();
                 
 
 
             }else{
 
-                System.out.println("Digite el nuevo valor");
+                System.out.println("Type the new value");
 			    modification = sc.nextLine();
 
             }
 
             if(taskM.modifyTaskReminder(selection, cambio, day, month, year, modification)){
 
-                System.out.println("Modificacion exitosa");
+                System.out.println("Successful modification");
 
             }else{
 
-                System.out.println("No se pudo modificar la tarea");
+                System.out.println("The task could not be modified");
 
             }  
             
@@ -216,13 +218,13 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No hay tareas");
+            System.out.println("No tasks entered");
 
         }else{
 
             System.out.println(listado);
 
-            System.out.println("Ingrese el ID de la tarea que desea eliminar");
+            System.out.println("Enter the ID of the task to be deleted");
 
             int selection = sc.nextInt();
 
@@ -239,7 +241,7 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No hay tareas");
+            System.out.println("No tasks entered");
 
         }else{
 
@@ -253,19 +255,19 @@ public class Main {
 
         if(taskM.stackEmpty()){
 
-            System.out.println("No has realizado acciones");
+            System.out.println("You have not performed actions");
 
         }else{
 
-            System.out.println("Se deshará la ultima accion realizada");
+            System.out.println("The last action performed will be undone");
 
             if(taskM.undoLastAction()){
 
-                System.out.println("Deshacer con exito");
+                System.out.println("Action successfully undone");
 
             }else{
 
-                System.out.println("No se pudo deshacer la accion");
+                System.out.println("The action could not be undone");
 
             }  
             
