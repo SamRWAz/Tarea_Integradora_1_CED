@@ -238,7 +238,7 @@ public class TaskManager {
                 tasks.put(id, taskDetails);
                 return true;
             } else if (actionType.equals("Delete task")) {
-
+                tasks.remove(id);
                 tasks.put(id, taskDetails);
 
                 if (taskDetails.getPriority() == Priority.PRIORITY) {
