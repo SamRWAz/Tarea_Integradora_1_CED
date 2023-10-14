@@ -67,7 +67,7 @@ public class Main {
                                          "╚══════════════════════════════╝\n");
                     break;
                 default:
-                    System.out.println("Opción no válida. Por favor, elija una opción válida.");
+                    System.out.println("Not valid option. Please, try again.");
             }
 
 
