@@ -1,6 +1,6 @@
 package model;
 
-public class Task {
+public class Task implements Comparable<Task> {
     private String title;
     private String description;
     private String datelimit;
@@ -57,11 +57,22 @@ public class Task {
 
 
     @Override
-    public String toString() {
-        return "Task [title=" + title + ", description=" + description + ", datelimit=" + datelimit
-                + ", priority=" + priority + "]";
-    }
 
+    public String toString() {
+        return "Title: " + title + "\n" +
+                "Description: " + description + "\n" +
+                "Date limit: " + datelimit + "\n" +
+                "Priority: " + priority + "\n";
+    }
+    public int compareTo(Task otherTask) {
+        if (this.priority == otherTask.priority) {
+            return this.datelimit.compareTo(otherTask.datelimit);
+        } else if (this.priority == Priority.PRIORITY) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
     
     
 

@@ -24,6 +24,53 @@ public class TaskManager {
 
     }
 
+    
+    public void sortTasks() {
+        Task[] taskArray = tasks.values().toArray(new Task[0]);
+        int n = taskArray.length;
+    
+        for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(taskArray, n, i);
+    
+        for (int i = n - 1; i >= 0; i--) {
+
+            Task temp = taskArray[0];
+            taskArray[0] = taskArray[i];
+            taskArray[i] = temp;
+    
+            heapify(taskArray, i, 0);
+        }
+
+        tasks.clear();
+        for (int i = 0; i < taskArray.length; i++) {
+            tasks.put(i + 1, taskArray[i]);
+        }
+    }
+    
+    private void heapify(Task[] arr, int n, int i) {
+        int largest = i; 
+        int l = 2 * i + 1; 
+        int r = 2 * i + 2; 
+    
+
+        if (l < n && arr[l].compareTo(arr[largest]) > 0)
+            largest = l;
+    
+        if (r < n && arr[r].compareTo(arr[largest]) > 0)
+            largest = r;
+    
+
+        if (largest != i) {
+            Task swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+    
+            heapify(arr, n, largest);
+        }
+    }
+
+
+
     public void testCases(){
 
         Task newTask = new Task("Additions and Subtractions","Everything you need to know about addition and subtraction","17/10/2023", Priority.PRIORITY);
@@ -31,7 +78,6 @@ public class TaskManager {
         Task newTask1 = new Task("Shoes","Buy costume shoes","30/10/2023", Priority.PRIORITY);
         tasks.put(2, newTask1);
     }
-
 
     public boolean addTaskReminder(int id, String title, String description, int day, int month, int year, int priority) {
 
