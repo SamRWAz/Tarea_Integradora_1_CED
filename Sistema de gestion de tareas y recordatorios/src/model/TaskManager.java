@@ -117,6 +117,18 @@ public class TaskManager {
 
     }
 
+    public boolean verifyId(int id){
+
+        if (tasks.containsKey(id)){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
     public void addTaskReminder(int id, Task task) {
         tasks.put(id , task);
         actionStack.push(new Action("Add task", task, id));
@@ -140,13 +152,17 @@ public class TaskManager {
                     actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
                 case 3:
+
                     Calendar fechaProvisional = new GregorianCalendar(day, month-1, year);
-                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");           
+
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    
                     String fechaChange = formatoFecha.format(fechaProvisional.getTime());
 
                     task.setDatelimit(fechaChange);
                     actionStack.push(new Action("Modify task", originalTask, id));
                     return true;
+
                 case 4:
                     Priority priority1 = Priority.NO_PRIORITY;
                     double priority = Integer.parseInt(modification);

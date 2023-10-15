@@ -105,9 +105,16 @@ public class Main {
 
     private void addTaskReminder(){
 
-        System.out.println("Enter a recognition id for the task (Only make use of numbers))");
+        System.out.println("Enter a recognition id for the task (Only make use of numbers)");
         int id = sc.nextInt();
 
+        while(taskM.verifyId(id)){
+
+            System.out.println("\n -> The id is already in use");
+            System.out.println("\nEnter a recognition id for the task (Only make use of numbers)");
+            id = sc.nextInt();
+
+        }
         sc.nextLine();
 
         System.out.println("Enter the task title:");
@@ -127,7 +134,15 @@ public class Main {
         year = sc.nextInt();
 
         System.out.println("Enter the priority of the task (1 for priority, 0 for non-priority):");
+            
         int priority = sc.nextInt();
+
+        while(priority != 1 && priority != 0){
+
+            System.out.println("Enter a valid priority (1 for priority, 0 for non-priority):");
+            priority = sc.nextInt();
+
+        }
 
         if(taskM.addTaskReminder(id, title, description, day, month-1, year, priority)){
             
@@ -158,11 +173,13 @@ public class Main {
 
             int selection = sc.nextInt();
 
-            System.out.println("What data do you want to change in the task?\n" +
-                               "1. Title\n" +
-                               "2. Description\n" +
-                               "3. Deadline\n" +
-                               "4. Priority (1 for priority, 0 for non-priority)" );
+            System.out.println("\n╔════════════════════════════════════════════════════╗\n" +
+                                 "║ What data do you want to change in the task?       ║\n" +
+                                 "║    1. Title                                        ║\n" +
+                                 "║    2. Description                                  ║\n" +
+                                 "║    3. Deadline                                     ║\n" +
+                                 "║    4. Priority (1 for priority, 0 for non-priority)║\n" +
+                                 "╚════════════════════════════════════════════════════╝\n");
 
             int cambio = sc.nextInt();
             
