@@ -233,12 +233,18 @@ public class TaskManager {
     
             if (actionType.equals("Add task")) {
                 tasks.remove(id);
+
+                if (taskDetails.getPriority() == Priority.PRIORITY) {
+                    prioritizedTasks.remove(taskDetails);
+                } else {
+                    nonPrioritizedTasks.remove(taskDetails);
+                }
+
                 return true;
             } else if (actionType.equals("Modify task")) {
                 tasks.put(id, taskDetails);
                 return true;
             } else if (actionType.equals("Delete task")) {
-                tasks.remove(id);
                 tasks.put(id, taskDetails);
 
                 if (taskDetails.getPriority() == Priority.PRIORITY) {
