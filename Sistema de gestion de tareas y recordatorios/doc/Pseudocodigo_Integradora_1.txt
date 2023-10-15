@@ -1,0 +1,24 @@
+Inicio
+    Solicitar al usuario que ingrese una opción para el menú de opciones (input)
+    Mientras (input != 0) hacer
+        Según (input)
+            Caso 1:
+                Solicitar al usuario que ingrese los siguientes datos de la tarea: id, título, descripción, día, mes, año y prioridad
+                Si (prioridad == 1) entonces
+                    priority1 se establece como PRIORITY
+                Sino
+                    priority1 se establece como NO_PRIORITY
+                Fin Si
+                Se crea una newTask con los siguientes atributos: title, description, fechaChangue, priority1
+                Se agrega la tarea a la hashTable y se genera una acción que se guarda en una Stack
+            Caso 2:
+                Si no hay tareas
+            Caso 3:
+                Si no hay clases
+            Caso 4:
+                Si no hay tareas
+            Caso 5:
+                Si no hay acciones realizadas
+        Fin Según
+    Fin Mientras
+Fin
