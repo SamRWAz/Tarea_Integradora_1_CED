@@ -11,6 +11,11 @@ Inicio
                 Fin Si
                 Se crea una newTask con los siguientes atributos: title, description, fechaChangue, priority1
                 Se agrega la tarea a la hashTable y se genera una acción que se guarda en una Stack
+                Si (prioridad == 1) entonces
+                    La tarea se guarda en una PriorityQueue llamada prioritizedTask
+                Sino
+                    La tarea se guarda en una PriorityQueue llamada nonPrioritizedTasks
+                Fin Si
             Caso 2:
                 Si no hay tareas
             Caso 3:
