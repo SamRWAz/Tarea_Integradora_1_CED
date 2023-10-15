@@ -50,8 +50,14 @@ Inicio
 			Se elmina la tarea de la priority queue nonPrioritizedTasks
 
 		Se genera una nueva accion en el stack(acción de eliminar)
+
             Caso 4:
-                Si no hay tareas
+                if(no hay tareas)
+			imprimir "No hay tareas pendientes"
+		else
+			
+			imprimir "Estas son todas las tareas almacenadas:\n"+tasks
+
             Caso 5:
                 Si no hay acciones realizadas
         Fin Según
