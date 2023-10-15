@@ -146,7 +146,7 @@ public class Main {
 
         if(taskM.addTaskReminder(id, title, description, day, month-1, year, priority)){
             
-            System.out.println("Task successfully entered");
+            System.out.println("The task / reminder has been successfully added");
 
         }else{
 
