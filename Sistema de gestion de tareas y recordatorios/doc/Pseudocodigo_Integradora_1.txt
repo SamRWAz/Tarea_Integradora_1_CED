@@ -17,7 +17,20 @@ Inicio
                     La tarea se guarda en una PriorityQueue llamada nonPrioritizedTasks
                 Fin Si
             Caso 2:
-                Si no hay tareas
+                Si no hay tareas entonces
+                    Mostrar mensaje que avisa que no hay tareas
+                Sino
+                    Solicitar al usuario que ingrese el id de la tarea a eliminar
+                    Solicitar al usuario que ingrese la opción del dato a modificar
+                    Solicitar al usuario que ingrese el nuevo dato modificado
+                    Buscar la tarea a modificar
+                    Cambiar el valor nuevo por el dato contenido en la tarea
+                    Si (modificacion == true) entonces
+                        Mostrar mensaje de modificación realizada
+                    Sino
+                        Mostrar mensaje que indica que la modificación no se logró
+                    Fin Si
+                Fin Si 
             Caso 3:
                 Si no hay clases
             Caso 4:
