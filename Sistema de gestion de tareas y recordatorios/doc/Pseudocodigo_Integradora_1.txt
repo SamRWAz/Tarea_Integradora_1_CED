@@ -16,6 +16,7 @@ Inicio
                 Sino
                     La tarea se guarda en una PriorityQueue llamada nonPrioritizedTasks
                 Fin Si
+
             Caso 2:
                 Si no hay tareas entonces
                     Mostrar mensaje que avisa que no hay tareas
@@ -30,9 +31,25 @@ Inicio
                     Sino
                         Mostrar mensaje que indica que la modificación no se logró
                     Fin Si
-                Fin Si 
+                Fin Si
+ 
             Caso 3:
-                Si no hay clases
+                if(no hay tareas)
+			imprimir "No hay tareas pendientes"
+		else
+			leer id
+
+
+		if(tasks.contains(id))
+			Se guarda una copia de la tarea como originalTask
+			Se elimina la tarea con el id ingresado
+
+		if(originalTask.Priority == PRIORITY)
+			Se elimina la tarea de la priority queue prioritizedTasks
+		else
+			Se elmina la tarea de la priority queue nonPrioritizedTasks
+
+		Se genera una nueva accion en el stack(acción de eliminar)
             Caso 4:
                 Si no hay tareas
             Caso 5:
