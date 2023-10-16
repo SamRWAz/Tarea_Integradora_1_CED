@@ -67,7 +67,12 @@ public class Main {
                                          "╚══════════════════════════════╝\n");
                     break;
                 default:
-                    System.out.println("Not valid option. Please, try again.");
+                System.out.println("\n╔══════════════════════════════╗\n" +
+                                     "║                              ║\n" +
+                                     "║  Not valid option.           ║\n" +
+                                     "║  Please, try again.          ║\n" +
+                                     "║                              ║\n" +
+                                     "╚══════════════════════════════╝\n");
             }
 
 
@@ -94,7 +99,10 @@ public class Main {
                              "║  0. Exit                     ║\n" + 
                              "╚══════════════════════════════╝\n");
 
-        System.out.print("-> Select an option: ");
+        System.out.print("\n╔══════════════════════╗\n" +
+                           "║ -> Select an option: ║\n" +
+                           "╚══════════════════════╝");
+    
 
 
         input = sc.nextInt();
@@ -105,52 +113,94 @@ public class Main {
 
     private void addTaskReminder(){
 
-        System.out.println("Enter a recognition id for the task (Only make use of numbers)");
+        System.out.println("\n╔══════════════════════════════╗\n" +
+                             "║                              ║\n" +
+                             "║  Enter a recognition id for  ║\n" +
+                             "║  the task (Only make use of  ║\n" +
+                             "║  numbers)                    ║\n" +
+                             "║                              ║\n" +
+                             "╚══════════════════════════════╝\n");
         int id = sc.nextInt();
 
         while(taskM.verifyId(id)){
 
-            System.out.println("\n -> The id is already in use");
-            System.out.println("\nEnter a recognition id for the task (Only make use of numbers)");
+            System.out.println("\n╔══════════════════════════════╗\n" +
+                                 "║                              ║\n" +
+                                 "║  The id is already in use.   ║\n" +
+                                 "║                              ║\n" +
+                                 "╚══════════════════════════════╝\n");
+
+            System.out.println("\n╔════════════════════════════════╗\n" +
+                                 "║                                ║\n" +
+                                 "║  Enter a recognition id for    ║\n" +
+                                 "║  the task (Only make use of    ║\n" +
+                                 "║  numbers)                      ║\n" +
+                                 "║                                ║\n" +
+                                 "╚════════════════════════════════╝\n");
             id = sc.nextInt();
 
         }
         sc.nextLine();
+            System.out.println("\n╔══════════════╗\n" +
+                                 "║              ║\n" +
+                                 "║ Enter the    ║\n" +
+                                 "║ task title:  ║\n" +
+                                 "║              ║\n" +
+                                 "╚══════════════╝\n");
+            String title = sc.nextLine();
 
-        System.out.println("Enter the task title:");
-        String title = sc.nextLine();
+            System.out.println("\n╔══════════════╗\n" +
+                                 "║              ║\n" +
+                                 "║ Enter        ║\n" +
+                                 "║ the          ║\n" +
+                                 "║ task         ║\n" +
+                                 "║ description: ║\n" +
+                                 "║              ║\n" +
+                                 "╚══════════════╝");
+            String description = sc.nextLine();
 
-        System.out.println("Enter the task description:");
-        String description = sc.nextLine();
+            System.out.println("\n╔════════════════╗\n" +
+                                 "║ Enter the day: ║\n" +
+                                 "╚════════════════╝");
+            int day = sc.nextInt();
 
-        int day, month, year;
-        System.out.println("Enter the day:");
-        day = sc.nextInt();
+            System.out.println("\n╔══════════════════╗\n" +
+                                 "║ Enter the month: ║\n" +
+                                 "╚══════════════════╝");
+            int month = sc.nextInt();
 
-        System.out.println("Enter the month:");
-        month = sc.nextInt();
+            System.out.println("\n╔═════════════════╗\n" +
+                                 "║ Enter the year: ║\n" +
+                                 "╚═════════════════╝");
+            int year = sc.nextInt();
 
-        System.out.println("Enter the year:");
-        year = sc.nextInt();
+            System.out.println("\n╔══════════════════════════════════════════════════════════════════════╗\n" +
+                                 "║ Enter the priority of the task (1 for priority, 0 for non-priority): ║\n" +
+                                 "╚══════════════════════════════════════════════════════════════════════╝");
+            int priority = sc.nextInt();
 
-        System.out.println("Enter the priority of the task (1 for priority, 0 for non-priority):");
-            
-        int priority = sc.nextInt();
 
         while(priority != 1 && priority != 0){
 
-            System.out.println("Enter a valid priority (1 for priority, 0 for non-priority):");
+            System.out.println("\n╔════════════════════════════════════════════════════════════╗\n" +
+                                 "║Enter a valid priority (1 for priority, 0 for non-priority):║\n" +
+                                 "╚════════════════════════════════════════════════════════════╝");
+
             priority = sc.nextInt();
 
         }
 
         if(taskM.addTaskReminder(id, title, description, day, month-1, year, priority)){
             
-            System.out.println("The task / reminder has been successfully added");
+            System.out.println("\n╔════════════════════════════════════════════════════════════╗\n" +
+                                 "║The task / reminder has been successfully added             ║\n" +
+                                 "╚════════════════════════════════════════════════════════════╝");
 
         }else{
 
-            System.out.println("Could not enter the task");
+            System.out.println("\n╔═══════════════════════════╗\n" +
+                                 "║Could not enter the task   ║\n" +
+                                 "╚═══════════════════════════╝");
 
         }  
         
@@ -163,13 +213,19 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No tasks entered");
+            System.out.println("\n╔══════════════════╗\n" +
+                                 "║No tasks entered  ║\n" +
+                                 "╚══════════════════╝");
+
 
         }else{
 
             System.out.println(listado);
 
-            System.out.println("Type the id of the task you want to modify");
+            System.out.println("\n╔═════════════════════════════════════════════╗\n" +
+                                 "║Type the id of the task you want to modify   ║\n" +
+                                 "╚═════════════════════════════════════════════╝");
+            
 
             int selection = sc.nextInt();
 
