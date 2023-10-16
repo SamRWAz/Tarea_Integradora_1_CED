@@ -58,11 +58,17 @@ public class Task implements Comparable<Task> {
 
     @Override
 
-    public String toString() {
-        return "Title: " + title + "\n" +
-                "Description: " + description + "\n" +
-                "Date limit: " + datelimit + "\n" +
-                "Priority: " + priority + "\n";
+    public String toString() { 
+
+        return"\n╔════════════════════════════════════════════════════════════════════════════╗\n" +
+                "║ Title: "  + title +                                                         "\n" +
+                "║Description: " + description +                                               "\n" +
+                "║Date limit: " + datelimit +                                                  "\n" +
+                "║Priority: " + priority +                                                     "\n"+
+                "╚════════════════════════════════════════════════════════════════════════════╝";        
+        
+        
+
     }
     public int compareTo(Task otherTask) {
         if (this.priority == otherTask.priority) {

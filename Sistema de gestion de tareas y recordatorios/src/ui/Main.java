@@ -99,9 +99,9 @@ public class Main {
                              "║  0. Exit                     ║\n" + 
                              "╚══════════════════════════════╝\n");
 
-        System.out.print("\n╔══════════════════════╗\n" +
-                           "║ -> Select an option: ║\n" +
-                           "╚══════════════════════╝");
+        System.out.println("\n╔══════════════════════╗\n" +
+                             "║ -> Select an option: ║\n" +
+                             "╚══════════════════════╝");
     
 
 
@@ -229,13 +229,13 @@ public class Main {
 
             int selection = sc.nextInt();
 
-            System.out.println("\n╔════════════════════════════════════════════════════╗\n" +
-                                 "║ What data do you want to change in the task?       ║\n" +
-                                 "║    1. Title                                        ║\n" +
-                                 "║    2. Description                                  ║\n" +
-                                 "║    3. Deadline                                     ║\n" +
-                                 "║    4. Priority (1 for priority, 0 for non-priority)║\n" +
-                                 "╚════════════════════════════════════════════════════╝\n");
+            System.out.println("\n╔══════════════════════════════════════════════════════╗\n" +
+                                 "║ What data do you want to change in the task?         ║\n" +
+                                 "║    1. Title                                          ║\n" +
+                                 "║    2. Description                                    ║\n" +
+                                 "║    3. Deadline                                       ║\n" +
+                                 "║    4. Priority (1 for priority, 0 for non-priority)  ║\n" +
+                                 "╚══════════════════════════════════════════════════════╝\n");
 
             int cambio = sc.nextInt();
             
@@ -248,34 +248,50 @@ public class Main {
 
             if(cambio == 3){
 
-                System.out.println("Enter date by day, month and year");
 
-                System.out.println("Enter the day:");
+                System.out.println("\n╔------------------------------------╗\n" +
+                                     "║Enter date by day, month and year   ║\n" +
+                                     "╚------------------------------------╝");
+
+
+                System.out.println("\n╔════════════════╗\n" +
+                                     "║Enter the day:  ║\n" +
+                                     "╚════════════════╝");                     
+
                 day = sc.nextInt();
 
-                System.out.println("Enter the month:");
+                System.out.println("\n╔══════════════════╗\n" +
+                                     "║Enter the month:  ║\n" +
+                                     "╚══════════════════╝");  
                 month = sc.nextInt();
 
-                System.out.println("Enter the year:");
+
+                System.out.println("\n╔═════════════════╗\n" +
+                                     "║Enter the year:  ║\n" +
+                                     "╚═════════════════╝"); 
                 year = sc.nextInt();
                 
 
 
             }else{
 
-                System.out.println("Type the new value");
+                System.out.println("\n╔═════════════════════╗\n" +
+                                     "║Type the new value:  ║\n" +
+                                     "╚═════════════════════╝"); 
 			    modification = sc.nextLine();
 
             }
 
             if(taskM.modifyTaskReminder(selection, cambio, day, month, year, modification)){
 
-                System.out.println("Successful modification");
-
+                                System.out.println("\n╔═════════════════════════╗\n" +
+                                                     "║Successful modification  ║\n" +
+                                                     "╚═════════════════════════╝");
             }else{
 
-                System.out.println("The task could not be modified");
-
+                System.out.println("\n╔════════════════════════════════╗\n" +
+                                     "║ The task could not be modified ║\n" +
+                                     "╚════════════════════════════════╝");
             }  
             
 
@@ -291,13 +307,19 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No tasks entered");
+            
+            System.out.println("\n╔══════════════════╗\n" +
+                                 "║No tasks entered  ║\n" +
+                                 "╚══════════════════╝");
+
 
         }else{
 
             System.out.println(listado);
 
-            System.out.println("Enter the ID of the task to be deleted");
+             System.out.println("\n╔════════════════════════════════════════╗\n" +
+                                  "║Enter the ID of the task to be deleted  ║\n" +
+                                  "╚════════════════════════════════════════╝");
 
             int selection = sc.nextInt();
 
@@ -314,7 +336,10 @@ public class Main {
 
         if(listado.equals("")){
 
-            System.out.println("No tasks entered");
+
+            System.out.println("\n╔══════════════════╗\n" +
+                                 "║No tasks entered  ║\n" +
+                                 "╚══════════════════╝");
 
         }else{
 
@@ -327,20 +352,26 @@ public class Main {
     private void undoLastAction(){
 
         if(taskM.stackEmpty()){
+            System.out.println("\n╔════════════════════════════════╗\n" +
+                                 "║You have not performed actions  ║\n" +
+                                 "╚════════════════════════════════╝");
 
-            System.out.println("You have not performed actions");
 
         }else{
-
-            System.out.println("The last action performed will be undone");
+            System.out.println("\n╔══════════════════════════════════════════╗\n" +
+                                 "║The last action performed will be undone  ║\n" +
+                                 "╚══════════════════════════════════════════╝");
 
             if(taskM.undoLastAction()){
-
-                System.out.println("Action successfully undone");
+                System.out.println("\n╔════════════════════════════╗\n" +
+                                     "║Action successfully undone  ║\n" +
+                                     "╚════════════════════════════╝");
 
             }else{
 
-                System.out.println("The action could not be undone");
+                System.out.println("\n╔════════════════════════════════╗\n" +
+                                     "║The action could not be undone  ║\n" +
+                                     "╚════════════════════════════════╝");
 
             }  
             
