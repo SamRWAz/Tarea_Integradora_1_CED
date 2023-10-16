@@ -82,7 +82,7 @@ public class TaskManager {
     public boolean addTaskReminder(int id, String title, String description, int day, int month, int year, int priority) {
 
 
-        Calendar fechaProvisional = new GregorianCalendar(day, month-1, year);
+        Calendar fechaProvisional = new GregorianCalendar(year, month - 1, day);
 
 		SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 		
